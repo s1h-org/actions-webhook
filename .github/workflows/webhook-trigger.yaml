@@ -20,11 +20,8 @@ jobs:
     - name: Event Name
       run: echo "Event triggered by $GITHUB_EVENT_NAME"
     - name: Goodbye
-      run: |
-      if [[ $GITHUB_EVENT_NAME ]] && [[ $GITHUB_EVENT_NAME == "webhook-one" ]] \
-      then \
-        npx cowsay "Bye!" \
-      elif [[ $GITHUB_EVENT_NAME ]] && [[ $GITHUB_EVENT_NAME == "webhook-two" ]] \
-      then \
-        npx cowsay "Adiós!" \
-      fi
+      if: ${{ github.event.action == "webhook-one" }}
+      run: npx cowsay "Bye!"
+    - name: Adiós
+      if: ${{ github.event.action == "webhook-two" }}
+      run: npx cowsay "Adiós!"
