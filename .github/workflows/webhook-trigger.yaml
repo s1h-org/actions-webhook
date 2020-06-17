@@ -20,7 +20,9 @@ jobs:
     - name: Hello
       run: echo "Hello, I've been triggered by a webhook!"
     - name: Event Name
-      run: echo "Event triggered by $GITHUB_EVENT_NAME"
+      run: |
+        echo "Event triggered by $GITHUB_EVENT_NAME"
+        echo "Dispatch type ${{ github.event.action }}"
     - name: Goodbye
       if: ${{ github.event.action }} == "webhook-one"
       run: npx cowsay "Bye!"
