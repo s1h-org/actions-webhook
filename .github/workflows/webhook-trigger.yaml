@@ -2,7 +2,9 @@ name: webhook-trigger
 
 on:
   repository_dispatch:
-    types: [webhook-one webhook-two]
+    types: 
+      - webhook-one
+      - webhook-two
 
 jobs:
   build:
