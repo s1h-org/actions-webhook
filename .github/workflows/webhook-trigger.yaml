@@ -24,8 +24,8 @@ jobs:
         echo "Event triggered by $GITHUB_EVENT_NAME"
         echo "Dispatch type ${{ github.event.action }}"
     - name: Goodbye
-      if: ${{ github.event.action }} == "webhook-one"
+      if: ${{ github.event.action == 'webhook-one' }}
       run: npx cowsay "Bye!"
     - name: Adiós
-      if: ${{ github.event.action }} == "webhook-two"
+      if: ${{ github.event.action == 'webhook-two' }}
       run: npx cowsay "Adiós!"
