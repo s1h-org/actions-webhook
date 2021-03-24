@@ -1,8 +1,8 @@
-name: webhook-trigger
+name: Deploy Webhook
 
 on:
   repository_dispatch:
-    types: 
+    types:
       - webhook-one
       - webhook-two
 
@@ -11,21 +11,21 @@ jobs:
     name: build
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Setup Node.js environment
-      uses: actions/setup-node@v1.4.2
-      with:
-        node-version: '12'
-    - name: Hello
-      run: echo "Hello, I've been triggered by a webhook!"
-    - name: Event Name
-      run: |
-        echo "Event triggered by $GITHUB_EVENT_NAME"
-        echo "Dispatch type ${{ github.event.action }}"
-    - name: Goodbye
-      if: ${{ github.event.action == 'webhook-one' }}
-      run: npx cowsay "Bye!"
-    - name: Adiós
-      if: ${{ github.event.action == 'webhook-two' }}
-      run: npx cowsay "Adiós!"
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v1.4.2
+        with:
+          node-version: "12"
+      - name: Hello
+        run: echo "Hello, I've been triggered by a webhook!"
+      - name: Event Name
+        run: |
+          echo "Event triggered by $GITHUB_EVENT_NAME"
+          echo "Dispatch type ${{ github.event.action }}"
+      - name: Goodbye
+        if: ${{ github.event.action == 'webhook-one' }}
+        run: echo "Event one was called"
+      - name: Adiós
+        if: ${{ github.event.action == 'webhook-two' }}
+        run: echo "Event two was called"
