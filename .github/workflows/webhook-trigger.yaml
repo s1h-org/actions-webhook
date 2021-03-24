@@ -5,6 +5,7 @@ on:
     types:
       - webhook-one
       - webhook-two
+      - webhook-develop
 
 jobs:
   build:
@@ -29,3 +30,6 @@ jobs:
       - name: Adiós
         if: ${{ github.event.action == 'webhook-two' }}
         run: echo "Event two was called"
+      - name: Develop
+        if: ${{ github.event.action == 'webhook-develop' }}
+        run: echo "Event DEVELOP was called"
